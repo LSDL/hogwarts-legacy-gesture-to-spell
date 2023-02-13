@@ -9,56 +9,66 @@ CoordMode, ToolTip, Screen
 
 execute := False
 
-IniRead, cmdL, settings.ini, Gestures, L
-IniRead, cmdR, settings.ini, Gestures, R
-IniRead, cmdU, settings.ini, Gestures, U
-IniRead, cmdD, settings.ini, Gestures, D
-IniRead, cmdLR, settings.ini, Gestures, LR
-IniRead, cmdRL, settings.ini, Gestures, RL
-IniRead, cmdUD, settings.ini, Gestures, UD
-IniRead, cmdDU, settings.ini, Gestures, DU
-IniRead, cmdLRL, settings.ini, Gestures, LRL
-IniRead, cmdRLR, settings.ini, Gestures, RLR
-IniRead, cmdUDU, settings.ini, Gestures, UDU
-IniRead, cmdDUD, settings.ini, Gestures, DUD
-IniRead, cmdLRLR, settings.ini, Gestures, LRLR
-IniRead, cmdRLRL, settings.ini, Gestures, RLR
-IniRead, cmdUDUD, settings.ini, Gestures, UDUD
-IniRead, cmdDUDU, settings.ini, Gestures, DUDU
-
-If (cmdL = "ERROR") {
-  msgbox, 설정 파일이 존재하지 않습니다!
-  Exit
+LoadSettings(_SourcePath = "settings.ini", _ValueDelim = "=", _VarPrefixDelim = "_")
+{
+  Global
+  if !FileExist(_SourcePath){
+    MsgBox, 16, % "Error", % "The file " . _SourcePath . " does not esxist"
+  } else {    
+    Local FileContent, CurrentPrefix, CurrentVarName, CurrentVarContent, DelimPos
+    FileRead, FileContent, %_SourcePath%
+    If ErrorLevel = 0
+    {
+      Loop, Parse, FileContent, `n, `r%A_Tab%%A_Space%
+      {
+        If A_LoopField Is Not Space
+        {
+          If (SubStr(A_LoopField, 1, 1) = "[")
+          {
+            RegExMatch(A_LoopField, "\[(.*)\]", ini_Section)
+            CurrentPrefix := ini_Section1
+          }
+          Else
+          {
+            DelimPos := InStr(A_LoopField, _ValueDelim)
+            CurrentVarName := SubStr(A_LoopField, 1, DelimPos - 1)
+            CurrentVarContent := SubStr(A_LoopField, DelimPos + 1)
+            %CurrentPrefix%%_VarPrefixDelim%%CurrentVarName% = %CurrentVarContent%
+          }
+          
+        }
+      }
+    }
+  }
 }
+LoadSettings()
 
 ; ~Ctrl::
 ~RButton::
-If %execute% {
+If (execute)
   Return
-}
 GetMouseGesture(True)
-While GetKeyState(LTrim(A_ThisHotkey,"~")){
+While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
   MG := GetMouseGesture()
   ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
   Sleep 50
 }
-if IsFunc(MG) {
-  ToolTip
-  %MG%()
+if (&Gestures_%MG% != &NonExistentVar) {
+  CastSpell(Gestures_%MG%)
   Return
 }
 GetMouseGesture(True)
 ToolTip
 Return
 
-GetMouseGesture(reset := false){
+GetMouseGesture(reset := false) {
 	Static
 	mousegetpos,xpos2, ypos2
 	dx:=xpos2-xpos1,dy:=ypos1-ypos2
-	,( abs(dy) >= abs(dx) ? (dy > 0 ? (track:="U") : (track:="D")) : (dx > 0 ? (track:="R") : (track:="L")) )	;track is up or down, left or right
-	,abs(dy)<4 and abs(dx)<4 ? (track := "") : ""	;not tracking at all if no significant change in x or y
+	,( abs(dy) >= abs(dx) ? (dy > 0 ? (track:="U") : (track:="D")) : (dx > 0 ? (track:="R") : (track:="L")) )
+	,abs(dy)<4 and abs(dx)<4 ? (track := "") : ""
 	,xpos1:=xpos2,ypos1:=ypos2
-	,track<>SubStr(gesture, 0, 1) ? (gesture := gesture . track) : ""	;ignore track if not changing since previous track
+	,track<>SubStr(gesture, 0, 1) ? (gesture := gesture . track) : ""
 	,gesture := reset ? "" : gesture
 	Return gesture
 }
@@ -68,143 +78,55 @@ ParseGesture(mg) {
   StringReplace, mg, mg, R, →, All
   StringReplace, mg, mg, U, ↑, All
   StringReplace, mg, mg, D, ↓, All
-  return mg
+  Return mg
+}
+
+CastSpell(keys) {
+  global
+  ToolTip, %keys%
+  execute := True
+  Send, %keys%
+  Sleep 200
+  execute := False
+  ToolTip
 }
 
 1::
-Send, {F1}
-Sleep, 100
-Send, {1}
-return
+if (Functions_DirectCastPage1) {
+  Send, {F1}
+  Sleep, 100
+  Send, {1}
+} else {
+  Send, {1}
+}
+Return
 
 2::
-Send, {F1}
-Sleep, 100
-Send, {2}
-return
+if (Functions_DirectCastPage1) {
+  Send, {F1}
+  Sleep, 100
+  Send, {2}
+} else {
+  Send, {2}
+}
+Return
 
 3::
-Send, {F1}
-Sleep, 100
-Send, {3}
-return
+if (Functions_DirectCastPage1) {
+  Send, {F1}
+  Sleep, 100
+  Send, {3}
+} else {
+  Send, {3}
+}
+Return
 
 4::
-Send, {F1}
-Sleep, 100
-Send, {4}
-return
-
-
-L() {
-  global
-  execute := True
-  Send, %cmdL%
-  Sleep 200
-  execute := False
+if (Functions_DirectCastPage1) {
+  Send, {F1}
+  Sleep, 100
+  Send, {4}
+} else {
+  Send, {4}
 }
-R() {
-  global
-  execute := True
-  Send, %cmdR%
-  Sleep 200
-  execute := False
-}
-U() {
-  global
-  execute := True
-  Send, %cmdU%
-  Sleep 200
-  execute := False
-}
-D() {
-  global
-  execute := True
-  Send, %cmdD%
-  Sleep 200
-  execute := False
-}
-LR() {
-  global
-  execute := True
-  Send, %cmdLR%
-  Sleep 200
-  execute := False
-}
-RL() {
-  global
-  execute := True
-  Send, %cmdRL%
-  Sleep 200
-  execute := False
-}
-UD() {
-  global
-  execute := True
-  Send, %cmdUD%
-  Sleep 200
-  execute := False
-}
-DU() {
-  global
-  execute := True
-  Send, %cmdDU%
-  Sleep 200
-  execute := False
-}
-LRL() {
-  global
-  execute := True
-  Send, %cmdLRL%
-  Sleep 200
-  execute := False
-}
-RLR() {
-  global
-  execute := True
-  Send, %cmdRLR%
-  Sleep 200
-  execute := False
-}
-UDU() {
-  global
-  execute := True
-  Send, %cmdUDU%
-  Sleep 200
-  execute := False
-}
-DUD() {
-  global
-  execute := True
-  Send, %cmdDUD%
-  Sleep 200
-  execute := False
-}
-LRLR() {
-  global
-  execute := True
-  Send, %cmdLRLR%
-  Sleep 200
-  execute := False
-}
-RLRL() {
-  global
-  execute := True
-  Send, %cmdRLRL%
-  Sleep 200
-  execute := False
-}
-UDUD() {
-  global
-  execute := True
-  Send, %cmdUDUD%
-  Sleep 200
-  execute := False
-}
-DUDU() {
-  global
-  execute := True
-  Send, %cmdDUDU%
-  Sleep 200
-  execute := False
-}
+Return
