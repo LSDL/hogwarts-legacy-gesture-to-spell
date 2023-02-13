@@ -15,7 +15,7 @@ I'm bet you're gonna love this.
 
 
 ## Installation
-Download the [latest release](https://github.com/LSDL/hogwarts-legacy-gesture-to-spell/releases/tag/release) (contains exe and ini), then launch exe and play.\
+Download the [latest release](https://github.com/LSDL/hogwarts-legacy-gesture-to-spell/releases), then launch exe and play.\
 Right click system tray icon then press 'Close' to terminate.
 
 
