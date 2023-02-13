@@ -10,12 +10,12 @@ I'm bet you're gonna love this.
 
 
 ## Demonstration
-[Webp Img](https://files.catbox.moe/f2ro5p.webp)
+[Webp Img](https://files.catbox.moe/f2ro5p.webp)\
 [Webp Img](https://files.catbox.moe/m42ryk.webp)
 
 
 ## Installation
-Download the latest release (contains exe and ini), then launch exe and play.\
+Download the [latest release](https://github.com/LSDL/hogwarts-legacy-gesture-to-spell/releases/tag/release) (contains exe and ini), then launch exe and play.\
 Right click system tray icon then press 'Close' to terminate.
 
 
