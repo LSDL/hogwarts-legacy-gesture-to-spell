@@ -10,7 +10,8 @@ I'm bet you're gonna love this.
 
 
 ## Demonstration
-[Youtube Video](https://youtu.be/xgpiAxEwMPA)
+[Youtube Video - Demo](https://youtu.be/xgpiAxEwMPA)
+[Youtube Video - Gameplay](https://youtu.be/OIM831k9JUY)
 
 
 ## Installation

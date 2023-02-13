@@ -83,7 +83,7 @@ ParseGesture(mg) {
 
 CastSpell(keys) {
   global
-  ToolTip, %keys%
+  ToolTip, %keys%, A_ScreenWidth //2 - 100, A_ScreenHeight //2
   execute := True
   Send, %keys%
   Sleep 200
