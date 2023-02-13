@@ -9,13 +9,16 @@ I have played game with mouse gesture more than 20 hours and still playing with.
 I'm bet you're gonna love this.
 
 
-
 ## Demonstration
-![alt text](https://files.catbox.moe/f2ro5p.webp)
-![alt text](https://files.catbox.moe/m42ryk.webp)
+[Webp Img](https://files.catbox.moe/f2ro5p.webp)
+[Webp Img](https://files.catbox.moe/m42ryk.webp)
+
+
 ## Installation
 Download the latest release (contains exe and ini), then launch exe and play.\
 Right click system tray icon then press 'Close' to terminate.
+
+
 ## Usage
 This is a description that assumes default settings.ini.\
 You can customize the settings.ini yourself.
