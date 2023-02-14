@@ -43,37 +43,26 @@ LoadSettings(_SourcePath = "settings.ini", _ValueDelim = "=", _VarPrefixDelim = 
 }
 LoadSettings()
 
-GetMouseGesture(reset := false) {
-	Static
-	mousegetpos,xpos2, ypos2
-	dx:=xpos2-xpos1,dy:=ypos1-ypos2
-	,( abs(dy) >= abs(dx) ? (dy > 0 ? (track:="U") : (track:="D")) : (dx > 0 ? (track:="R") : (track:="L")) )
-	,abs(dy)<4 and abs(dx)<4 ? (track := "") : ""
-	,xpos1:=xpos2,ypos1:=ypos2
-	,track<>SubStr(gesture, 0, 1) ? (gesture := gesture . track) : ""
-	,gesture := reset ? "" : gesture
-	Return gesture
-}
+HotKey, %Functions_GestureKey%, GestureCatch
 
-ParseGesture(mg) {
-  StringReplace, mg, mg, L, ←, All
-  StringReplace, mg, mg, R, →, All
-  StringReplace, mg, mg, U, ↑, All
-  StringReplace, mg, mg, D, ↓, All
-  Return mg
-}
-
-CastSpell(keys) {
-  global
+GestureCatch:
+If (execute)
+  Return
+GetMouseGesture(True)
+While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
+  MG := GetMouseGesture()
   if (Functions_DebugToolTip) {
-    ToolTip, %keys%, A_ScreenWidth //2 - 100, A_ScreenHeight //2
+    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
   }
-  execute := True
-  Send, %keys%
-  Sleep 200
-  execute := False
-  ToolTip
+  Sleep 50
 }
+if (&Gestures_%MG% != &NonExistentVar) {
+  CastSpell(Gestures_%MG%)
+  Return
+}
+GetMouseGesture(True)
+ToolTip
+Return
 
 1::
 if (Functions_DirectCastPage1) {
@@ -116,42 +105,34 @@ if (Functions_DirectCastPage1) {
 Return
 
 
-#If !Functions_LButtonMod
-~RButton::
-If (execute)
-  Return
-GetMouseGesture(True)
-While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
-  MG := GetMouseGesture()
-  if (Functions_DebugToolTip) {
-    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
-  }
-  Sleep 50
+GetMouseGesture(reset := false) {
+	Static
+	mousegetpos,xpos2, ypos2
+	dx:=xpos2-xpos1,dy:=ypos1-ypos2
+	,( abs(dy) >= abs(dx) ? (dy > 0 ? (track:="U") : (track:="D")) : (dx > 0 ? (track:="R") : (track:="L")) )
+	,abs(dy)<4 and abs(dx)<4 ? (track := "") : ""
+	,xpos1:=xpos2,ypos1:=ypos2
+	,track<>SubStr(gesture, 0, 1) ? (gesture := gesture . track) : ""
+	,gesture := reset ? "" : gesture
+	Return gesture
 }
-if (&Gestures_%MG% != &NonExistentVar) {
-  CastSpell(Gestures_%MG%)
-  Return
-}
-GetMouseGesture(True)
-ToolTip
-Return
 
-#If Functions_LButtonMod
-~LButton::
-If (execute)
-  Return
-GetMouseGesture(True)
-While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
-  MG := GetMouseGesture()
+ParseGesture(mg) {
+  StringReplace, mg, mg, L, ←, All
+  StringReplace, mg, mg, R, →, All
+  StringReplace, mg, mg, U, ↑, All
+  StringReplace, mg, mg, D, ↓, All
+  Return mg
+}
+
+CastSpell(keys) {
+  global
   if (Functions_DebugToolTip) {
-    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
+    ToolTip, %keys%, A_ScreenWidth //2 - 100, A_ScreenHeight //2
   }
-  Sleep 50
+  execute := True
+  Send, %keys%
+  Sleep 200
+  execute := False
+  ToolTip
 }
-if (&Gestures_%MG% != &NonExistentVar) {
-  CastSpell(Gestures_%MG%)
-  Return
-}
-GetMouseGesture(True)
-ToolTip
-Return
