@@ -48,21 +48,27 @@ You can edit settings.ini for your own gestures.
 
 ```
 [Functions]
+GestureKey=~RButton
 DirectCastPage1=1
 DebugToolTip=0
-LButtonMod=0
 ```
-0: Off / 1: On
+
+- GestureKey
+This is the key to activate gesture. Default is "\~RButton" = Mouse Right Click.\
+"\~" means "This keys native function will not be blocked."\
+For more information, visit AHK V1 Doc.\
+[HotKeys](https://www.autohotkey.com/docs/v1/Hotkeys.htm)\
+[List of Keys](https://www.autohotkey.com/docs/v1/KeyList.htm)
+
 
 - DirectCastPage1
 If enabled, pressing 1234 keys directly cast Page 1 - Slot 1234 spells.
-If disabled, you can cast currently selected pages spells with 1234 keys (like normally)
+If disabled, you can cast currently selected pages spells with 1234 keys (like normally)\
+0: Off / 1: On
 
 - DebugToolTip
-If enabled, whenever you gesture, tooltip shows what gesture and keys activated.
-
-- LButtonMod
-If Enabled, gesture drag key changes to LButton. (Then RButton does nothing)
+If enabled, whenever you gesture, tooltip shows what gesture and keys activated.\
+0: Off / 1: On
 
 ```
 [Gestures] 
