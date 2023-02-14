@@ -10,7 +10,7 @@ I'm bet you're gonna love this.
 
 
 ## Demonstration
-[Youtube Video - Demo](https://youtu.be/xgpiAxEwMPA)
+[Youtube Video - Demo](https://youtu.be/xgpiAxEwMPA)\
 [Youtube Video - Gameplay](https://youtu.be/OIM831k9JUY)
 
 
@@ -49,10 +49,20 @@ You can edit settings.ini for your own gestures.
 ```
 [Functions]
 DirectCastPage1=1
+DebugToolTip=0
+LButtonMod=0
 ```
-0: Off, 1: On\
+0: Off / 1: On
+
+- DirectCastPage1
 If enabled, pressing 1234 keys directly cast Page 1 - Slot 1234 spells.
 If disabled, you can cast currently selected pages spells with 1234 keys (like normally)
+
+- DebugToolTip
+If enabled, whenever you gesture, tooltip shows what gesture and keys activated.
+
+- LButtonMod
+If Enabled, gesture drag key changes to LButton. (Then RButton does nothing)
 
 ```
 [Gestures] 

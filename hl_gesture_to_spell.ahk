@@ -43,14 +43,36 @@ LoadSettings(_SourcePath = "settings.ini", _ValueDelim = "=", _VarPrefixDelim = 
 }
 LoadSettings()
 
-; ~Ctrl::
+#If !Functions_LButtonMod
 ~RButton::
 If (execute)
   Return
 GetMouseGesture(True)
 While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
   MG := GetMouseGesture()
-  ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
+  if (Functions_DebugToolTip) {
+    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
+  }
+  Sleep 50
+}
+if (&Gestures_%MG% != &NonExistentVar) {
+  CastSpell(Gestures_%MG%)
+  Return
+}
+GetMouseGesture(True)
+ToolTip
+Return
+
+#If Functions_LButtonMod
+~LButton::
+If (execute)
+  Return
+GetMouseGesture(True)
+While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
+  MG := GetMouseGesture()
+  if (Functions_DebugToolTip) {
+    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
+  }
   Sleep 50
 }
 if (&Gestures_%MG% != &NonExistentVar) {
@@ -83,7 +105,9 @@ ParseGesture(mg) {
 
 CastSpell(keys) {
   global
-  ToolTip, %keys%, A_ScreenWidth //2 - 100, A_ScreenHeight //2
+  if (Functions_DebugToolTip) {
+    ToolTip, %keys%, A_ScreenWidth //2 - 100, A_ScreenHeight //2
+  }
   execute := True
   Send, %keys%
   Sleep 200
