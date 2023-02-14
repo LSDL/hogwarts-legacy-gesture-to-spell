@@ -56,7 +56,7 @@ Overflow=0
 AxisLock=1
 ```
 
-- GestureKey
+- GestureKey\
 This is the key to activate gesture. Default is "\~RButton" = Mouse Right Click.\
 "\~" means "This keys native function will not be blocked."\
 For more information, visit AHK V1 Doc.\
@@ -64,32 +64,29 @@ For more information, visit AHK V1 Doc.\
 [List of Keys](https://www.autohotkey.com/docs/v1/KeyList.htm)
 
 
-- DirectCastPage1
-If enabled, pressing 1234 keys directly cast Page 1 - Slot 1234 spells. (Default: 1)
+- DirectCastPage1\
+If enabled, pressing 1234 keys directly cast Page 1 - Slot 1234 spells.\
 If disabled, you can cast currently selected pages spells with 1234 keys (like normally)\
-*0: Off / 1: On*
+*0: Off / 1: On (Default: 1)*
 
-- DebugToolTip
+- DebugToolTip\
 If enabled, whenever you gesture, tooltip shows what gesture and keys activated.\
 *0: Off / 1: On (Default: 0)*
 
-- Overflow
+- Overflow\
 Gesture overflow filtering function.\
 If enabled,\
-> LU -> Command not exists -> Do nothing.
-
-If disabled, \
-> LU -> LU command not exists, but L command Exists -> Do L command.
-
+LU -> Command not exists -> Do nothing.\
+If disabled,\
+LU -> LU command not exists, but L command Exists -> Do L command.\
 *0: Off / 1: On (Default: 0)*
 
-- AxisLock
+- AxisLock\
 Fix the gesture input axis to first gesture.\
 If enabled, from the second gesture, only the input of the same axis as the first gesture is accepted.\
 For exmaple,\
-> L -> next gesture must be R
-LR -> next gesture must be L
-
+L -> next gesture must be R\
+LR -> next gesture must be L\
 *0: Off / 1: On (Default: 1)*
 
 ```
