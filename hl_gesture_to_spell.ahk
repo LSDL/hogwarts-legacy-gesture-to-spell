@@ -115,19 +115,6 @@ if (Functions_DirectCastPage1) {
 }
 Return
 
-
-; GetMouseGesture(reset := false) {
-; 	Static
-; 	mousegetpos,xpos2, ypos2
-; 	dx:=xpos2-xpos1,dy:=ypos1-ypos2
-; 	,( abs(dy) >= abs(dx) ? (dy > 0 ? (track:="U") : (track:="D")) : (dx > 0 ? (track:="R") : (track:="L")) )
-; 	,abs(dy)<4 and abs(dx)<4 ? (track := "") : ""
-; 	,xpos1:=xpos2,ypos1:=ypos2
-; 	,track<>SubStr(gesture, 0, 1) ? (gesture := gesture . track) : ""
-; 	,gesture := reset ? "" : gesture
-; 	Return gesture
-; }
-
 GetMouseGesture(reset := false, AxisLock := false) {
   Static
   MouseGetPos, xpos2, ypos2
@@ -153,16 +140,13 @@ GetMouseGesture(reset := false, AxisLock := false) {
   }
   
   if (AxisLock) {
-    if (track_prev=="L" and track<>"R") {
+    if (track_prev="L" and track!="R") {
       track:=""
-    }
-    if (track_prev=="R" and track<>"L") {
+    } else if (track_prev="R" and track!="L") {
       track:=""
-    }
-    if (track_prev=="U" and track<>"D") {
+    } else if (track_prev="U" and track!="D") {
       track:=""
-    }
-    if (track_prev=="D" and track<>"U") {
+    } else if (track_prev="D" and track!="U") {
       track:=""
     }
   }
@@ -177,6 +161,7 @@ GetMouseGesture(reset := false, AxisLock := false) {
   }
 
   gesture := reset ? "" : gesture
+  track_prev := reset ? "" : track_prev
 
   Return gesture
 }
