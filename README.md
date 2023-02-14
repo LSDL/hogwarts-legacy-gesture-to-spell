@@ -67,20 +67,21 @@ For more information, visit AHK V1 Doc.\
 - DirectCastPage1
 If enabled, pressing 1234 keys directly cast Page 1 - Slot 1234 spells. (Default: 1)
 If disabled, you can cast currently selected pages spells with 1234 keys (like normally)\
-> 0: Off / 1: On\
+*0: Off / 1: On*
 
 - DebugToolTip
-If enabled, whenever you gesture, tooltip shows what gesture and keys activated. (Default: 0)\
-> 0: Off / 1: On\
+If enabled, whenever you gesture, tooltip shows what gesture and keys activated.\
+*0: Off / 1: On (Default: 0)*
 
 - Overflow
 Gesture overflow filtering function.\
 If enabled,\
-> LU -> Command not exists -> Do nothing.\
+> LU -> Command not exists -> Do nothing.
+
 If disabled, \
-> LU -> LU command not exists, but L command Exists -> Do L command.\
-> (Default: 0)
-0: Off / 1: On
+> LU -> LU command not exists, but L command Exists -> Do L command.
+
+*0: Off / 1: On (Default: 0)*
 
 - AxisLock
 Fix the gesture input axis to first gesture.\
@@ -88,6 +89,8 @@ If enabled, from the second gesture, only the input of the same axis as the firs
 For exmaple,\
 > L -> next gesture must be R
 LR -> next gesture must be L
+
+*0: Off / 1: On (Default: 1)*
 
 ```
 [Gestures] 
