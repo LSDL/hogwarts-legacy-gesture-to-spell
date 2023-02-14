@@ -48,19 +48,30 @@ HotKey, %Functions_GestureKey%, GestureCatch
 GestureCatch:
 If (execute)
   Return
-GetMouseGesture(True)
+GetMouseGesture(True, Functions_AxisLock)
 While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
-  MG := GetMouseGesture()
+  MG := GetMouseGesture(False, Functions_AxisLock)
   if (Functions_DebugToolTip) {
     ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
   }
   Sleep 50
 }
-if (&Gestures_%MG% != &NonExistentVar) {
-  CastSpell(Gestures_%MG%)
-  Return
+if (Functions_Overflow) {
+  if (&Gestures_%MG% != &NonExistentVar) {
+    CastSpell(Gestures_%MG%)
+    Return
+  }
+} else {
+  while(MG <> "") {
+    ToolTip, %MG%
+    if (&Gestures_%MG% != &NonExistentVar) {
+      CastSpell(Gestures_%MG%)
+      Return
+    }
+    StringTrimRight, MG, MG, 1
+  }
 }
-GetMouseGesture(True)
+GetMouseGesture(True, Functions_AxisLock)
 ToolTip
 Return
 
@@ -105,16 +116,69 @@ if (Functions_DirectCastPage1) {
 Return
 
 
-GetMouseGesture(reset := false) {
-	Static
-	mousegetpos,xpos2, ypos2
-	dx:=xpos2-xpos1,dy:=ypos1-ypos2
-	,( abs(dy) >= abs(dx) ? (dy > 0 ? (track:="U") : (track:="D")) : (dx > 0 ? (track:="R") : (track:="L")) )
-	,abs(dy)<4 and abs(dx)<4 ? (track := "") : ""
-	,xpos1:=xpos2,ypos1:=ypos2
-	,track<>SubStr(gesture, 0, 1) ? (gesture := gesture . track) : ""
-	,gesture := reset ? "" : gesture
-	Return gesture
+; GetMouseGesture(reset := false) {
+; 	Static
+; 	mousegetpos,xpos2, ypos2
+; 	dx:=xpos2-xpos1,dy:=ypos1-ypos2
+; 	,( abs(dy) >= abs(dx) ? (dy > 0 ? (track:="U") : (track:="D")) : (dx > 0 ? (track:="R") : (track:="L")) )
+; 	,abs(dy)<4 and abs(dx)<4 ? (track := "") : ""
+; 	,xpos1:=xpos2,ypos1:=ypos2
+; 	,track<>SubStr(gesture, 0, 1) ? (gesture := gesture . track) : ""
+; 	,gesture := reset ? "" : gesture
+; 	Return gesture
+; }
+
+GetMouseGesture(reset := false, AxisLock := false) {
+  Static
+  MouseGetPos, xpos2, ypos2
+  dx := xpos2 - xpos1
+  dy := ypos1 - ypos2
+  
+  if (abs(dy) >= abs(dx)) {
+    if (dy > 0) { 
+      track:="U" 
+    } else { 
+      track:="D" 
+    }
+  } else {
+    if (dx > 0) { 
+      track:="R"
+    } else { 
+      track:="L" 
+    }
+  }
+
+  if (abs(dy) < 4 and abs(dx) < 4) {
+    track := ""
+  }
+  
+  if (AxisLock) {
+    if (track_prev=="L" and track<>"R") {
+      track:=""
+    }
+    if (track_prev=="R" and track<>"L") {
+      track:=""
+    }
+    if (track_prev=="U" and track<>"D") {
+      track:=""
+    }
+    if (track_prev=="D" and track<>"U") {
+      track:=""
+    }
+  }
+
+  if (track<>"") {
+    track_prev := track
+  }
+  xpos1 := xpos2
+  ypos1 := ypos2
+  if (track <> SubStr(gesture, 0, 1)) { 
+    gesture := gesture . track 
+  }
+
+  gesture := reset ? "" : gesture
+
+  Return gesture
 }
 
 ParseGesture(mg) {

@@ -15,7 +15,8 @@ I'm bet you're gonna love this.
 
 
 ## Installation
-Download the [latest release](https://github.com/LSDL/hogwarts-legacy-gesture-to-spell/releases), then launch exe and play.\
+Download the [latest release](https://github.com/LSDL/hogwarts-legacy-gesture-to-spell/releases)\
+launch game first, then launch exe and play.\
 Right click system tray icon then press 'Close' to terminate.
 
 
@@ -51,6 +52,8 @@ You can edit settings.ini for your own gestures.
 GestureKey=~RButton
 DirectCastPage1=1
 DebugToolTip=0
+Overflow=0
+AxisLock=1
 ```
 
 - GestureKey
@@ -62,13 +65,29 @@ For more information, visit AHK V1 Doc.\
 
 
 - DirectCastPage1
-If enabled, pressing 1234 keys directly cast Page 1 - Slot 1234 spells.
+If enabled, pressing 1234 keys directly cast Page 1 - Slot 1234 spells. (Default: 1)
 If disabled, you can cast currently selected pages spells with 1234 keys (like normally)\
 0: Off / 1: On
 
 - DebugToolTip
-If enabled, whenever you gesture, tooltip shows what gesture and keys activated.\
+If enabled, whenever you gesture, tooltip shows what gesture and keys activated. (Default: 0)\
 0: Off / 1: On
+
+- Overflow
+Gesture overflow filtering function.\
+If enabled,\
+> LU -> Command not exists -> Do nothing.
+If disabled, \
+> LU -> LU command not exists, but L command Exists -> Do L command.
+(Default: 0)\
+0: Off / 1: On
+
+- AxisLock
+Fix the gesture input axis to first gesture.\
+If enabled, from the second gesture, only the input of the same axis as the first gesture is accepted.\
+For exmaple,\
+L -> next gesture must be R
+LR -> next gesture must be L
 
 ```
 [Gestures] 
