@@ -43,46 +43,6 @@ LoadSettings(_SourcePath = "settings.ini", _ValueDelim = "=", _VarPrefixDelim = 
 }
 LoadSettings()
 
-#If !Functions_LButtonMod
-~RButton::
-If (execute)
-  Return
-GetMouseGesture(True)
-While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
-  MG := GetMouseGesture()
-  if (Functions_DebugToolTip) {
-    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
-  }
-  Sleep 50
-}
-if (&Gestures_%MG% != &NonExistentVar) {
-  CastSpell(Gestures_%MG%)
-  Return
-}
-GetMouseGesture(True)
-ToolTip
-Return
-
-#If Functions_LButtonMod
-~LButton::
-If (execute)
-  Return
-GetMouseGesture(True)
-While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
-  MG := GetMouseGesture()
-  if (Functions_DebugToolTip) {
-    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
-  }
-  Sleep 50
-}
-if (&Gestures_%MG% != &NonExistentVar) {
-  CastSpell(Gestures_%MG%)
-  Return
-}
-GetMouseGesture(True)
-ToolTip
-Return
-
 GetMouseGesture(reset := false) {
 	Static
 	mousegetpos,xpos2, ypos2
@@ -153,4 +113,45 @@ if (Functions_DirectCastPage1) {
 } else {
   Send, {4}
 }
+Return
+
+
+#If !Functions_LButtonMod
+~RButton::
+If (execute)
+  Return
+GetMouseGesture(True)
+While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
+  MG := GetMouseGesture()
+  if (Functions_DebugToolTip) {
+    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
+  }
+  Sleep 50
+}
+if (&Gestures_%MG% != &NonExistentVar) {
+  CastSpell(Gestures_%MG%)
+  Return
+}
+GetMouseGesture(True)
+ToolTip
+Return
+
+#If Functions_LButtonMod
+~LButton::
+If (execute)
+  Return
+GetMouseGesture(True)
+While (GetKeyState(LTrim(A_ThisHotkey, "~"))) {
+  MG := GetMouseGesture()
+  if (Functions_DebugToolTip) {
+    ToolTip, % ParseGesture(MG), A_ScreenWidth //2 - 100, A_ScreenHeight //2
+  }
+  Sleep 50
+}
+if (&Gestures_%MG% != &NonExistentVar) {
+  CastSpell(Gestures_%MG%)
+  Return
+}
+GetMouseGesture(True)
+ToolTip
 Return
