@@ -44,6 +44,10 @@ LoadSettings(_SourcePath = "settings.ini", _ValueDelim = "=", _VarPrefixDelim = 
 LoadSettings()
 
 HotKey, %Functions_GestureKey%, GestureCatch
+HotKey, %KeyMapping_Spell1%, Spell1KeyHandler
+HotKey, %KeyMapping_Spell2%, Spell2KeyHandler
+HotKey, %KeyMapping_Spell3%, Spell3KeyHandler
+HotKey, %KeyMapping_Spell4%, Spell4KeyHandler
 
 GestureCatch:
 If (execute)
@@ -75,43 +79,43 @@ GetMouseGesture(True, Functions_AxisLock)
 ToolTip
 Return
 
-1::
+Spell1KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {1}
+  Send, {%KeyMapping_Spell1%}
 } else {
-  Send, {1}
+  Send, {%KeyMapping_Spell1%}
 }
 Return
 
-2::
+Spell2KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {2}
+  Send, {%KeyMapping_Spell2%}
 } else {
-  Send, {2}
+  Send, {%KeyMapping_Spell2%}
 }
 Return
 
-3::
+Spell3KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {3}
+  Send, {%KeyMapping_Spell3%}
 } else {
-  Send, {3}
+  Send, {%KeyMapping_Spell3%}
 }
 Return
 
-4::
+Spell4KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {4}
+  Send, {%KeyMapping_Spell4%}
 } else {
-  Send, {4}
+  Send, {%KeyMapping_Spell4%}
 }
 Return
 
