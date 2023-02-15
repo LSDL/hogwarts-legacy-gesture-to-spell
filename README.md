@@ -108,3 +108,14 @@ Gesttures are customizable.\
 L, R, U, D Combination = \{<F1\~F4>\}<1~4>\
 ex) LRU={F4}2\
 ex) LRLRU={F4}4
+
+## Diagonal Version
+This version supports 8 direction gesture.\
+\
+**Difference**
+- 'AxisLock' not supported.
+- Gesture config keyword is different. not LRUD, it works like\
+7 8 9 | ↖ ↑ ↗\
+4 X 6 | ← X →\
+1 2 3 | ↙ ↓ ↘\
+Check out the settings_diagonal.ini as reference.
