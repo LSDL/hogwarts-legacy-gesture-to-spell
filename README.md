@@ -97,6 +97,7 @@ Spell3=3
 Spell4=4
 ```
 
+- DirectCastPage1Keys\
 KeyBindings for DirectCastPage1.\
 When you press the 'Spell1' key, the page 1 slot  1 magic is cast.\
 *(Default: 1 2 3 4)*
@@ -116,6 +117,8 @@ UDU={F4}2
 DUD={F4}3
 RLR={F4}4
 ```
+
+- Gestures\
 Gesttures are customizable.\
 L, R, U, D Combination = \{<F1\~F4>\}<1~4>\
 ex) LRU={F4}2\
