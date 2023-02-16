@@ -44,10 +44,10 @@ LoadSettings(_SourcePath = "settings.ini", _ValueDelim = "=", _VarPrefixDelim = 
 LoadSettings()
 
 HotKey, %Functions_GestureKey%, GestureCatch
-HotKey, %KeyMapping_Spell1%, Spell1KeyHandler
-HotKey, %KeyMapping_Spell2%, Spell2KeyHandler
-HotKey, %KeyMapping_Spell3%, Spell3KeyHandler
-HotKey, %KeyMapping_Spell4%, Spell4KeyHandler
+HotKey, %DirectCastPage1Keys_Spell1%, Spell1KeyHandler
+HotKey, %DirectCastPage1Keys_Spell2%, Spell2KeyHandler
+HotKey, %DirectCastPage1Keys_Spell3%, Spell3KeyHandler
+HotKey, %DirectCastPage1Keys_Spell4%, Spell4KeyHandler
 
 GestureCatch:
 If (execute)
@@ -83,9 +83,9 @@ Spell1KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {%KeyMapping_Spell1%}
+  Send, {%DirectCastPage1Keys_Spell1%}
 } else {
-  Send, {%KeyMapping_Spell1%}
+  Send, {%DirectCastPage1Keys_Spell1%}
 }
 Return
 
@@ -93,9 +93,9 @@ Spell2KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {%KeyMapping_Spell2%}
+  Send, {%DirectCastPage1Keys_Spell2%}
 } else {
-  Send, {%KeyMapping_Spell2%}
+  Send, {%DirectCastPage1Keys_Spell2%}
 }
 Return
 
@@ -103,9 +103,9 @@ Spell3KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {%KeyMapping_Spell3%}
+  Send, {%DirectCastPage1Keys_Spell3%}
 } else {
-  Send, {%KeyMapping_Spell3%}
+  Send, {%DirectCastPage1Keys_Spell3%}
 }
 Return
 
@@ -113,9 +113,9 @@ Spell4KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {%KeyMapping_Spell4%}
+  Send, {%DirectCastPage1Keys_Spell4%}
 } else {
-  Send, {%KeyMapping_Spell4%}
+  Send, {%DirectCastPage1Keys_Spell4%}
 }
 Return
 

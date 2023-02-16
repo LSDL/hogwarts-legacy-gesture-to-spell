@@ -44,6 +44,10 @@ LoadSettings(_SourcePath = "settings_diagonal.ini", _ValueDelim = "=", _VarPrefi
 LoadSettings()
 
 HotKey, %Functions_GestureKey%, GestureCatch
+HotKey, %DirectCastPage1Keys_Spell1%, Spell1KeyHandler
+HotKey, %DirectCastPage1Keys_Spell2%, Spell2KeyHandler
+HotKey, %DirectCastPage1Keys_Spell3%, Spell3KeyHandler
+HotKey, %DirectCastPage1Keys_Spell4%, Spell4KeyHandler
 
 GestureCatch:
 If (execute)
@@ -75,43 +79,43 @@ GetMouseGesture(True)
 ToolTip
 Return
 
-1::
+Spell1KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {1}
+  Send, {%DirectCastPage1Keys_Spell1%}
 } else {
-  Send, {1}
+  Send, {%DirectCastPage1Keys_Spell1%}
 }
 Return
 
-2::
+Spell2KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {2}
+  Send, {%DirectCastPage1Keys_Spell2%}
 } else {
-  Send, {2}
+  Send, {%DirectCastPage1Keys_Spell2%}
 }
 Return
 
-3::
+Spell3KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {3}
+  Send, {%DirectCastPage1Keys_Spell3%}
 } else {
-  Send, {3}
+  Send, {%DirectCastPage1Keys_Spell3%}
 }
 Return
 
-4::
+Spell4KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {4}
+  Send, {%DirectCastPage1Keys_Spell4%}
 } else {
-  Send, {4}
+  Send, {%DirectCastPage1Keys_Spell4%}
 }
 Return
 

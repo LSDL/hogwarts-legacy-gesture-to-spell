@@ -90,6 +90,18 @@ LR -> next gesture must be L\
 *0: Off / 1: On (Default: 1)*
 
 ```
+[DirectCastPage1Keys]
+Spell1=1
+Spell2=2
+Spell3=3
+Spell4=4
+```
+
+KeyBindings for DirectCastPage1.\
+When you press the 'Spell1' key, the page 1 slot  1 magic is cast.\
+*(Default: 1 2 3 4)*
+
+```
 [Gestures] 
 L={F2}1
 U={F2}2
