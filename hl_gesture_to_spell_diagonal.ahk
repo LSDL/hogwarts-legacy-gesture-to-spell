@@ -83,9 +83,9 @@ Spell1KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {%DirectCastPage1Keys_Spell1%}
+  Send, 1
 } else {
-  Send, {%DirectCastPage1Keys_Spell1%}
+  Send, 1
 }
 Return
 
@@ -93,9 +93,9 @@ Spell2KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {%DirectCastPage1Keys_Spell2%}
+  Send, 2
 } else {
-  Send, {%DirectCastPage1Keys_Spell2%}
+  Send, 2
 }
 Return
 
@@ -103,9 +103,9 @@ Spell3KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {%DirectCastPage1Keys_Spell3%}
+  Send, 3
 } else {
-  Send, {%DirectCastPage1Keys_Spell3%}
+  Send, 3
 }
 Return
 
@@ -113,9 +113,9 @@ Spell4KeyHandler:
 if (Functions_DirectCastPage1) {
   Send, {F1}
   Sleep, 100
-  Send, {%DirectCastPage1Keys_Spell4%}
+  Send, 4
 } else {
-  Send, {%DirectCastPage1Keys_Spell4%}
+  Send, 4
 }
 Return
 
