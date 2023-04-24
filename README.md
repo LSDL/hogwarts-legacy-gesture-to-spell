@@ -17,6 +17,7 @@ I'm bet you're gonna love this.
 ## Installation
 Download the [latest release](https://github.com/LSDL/hogwarts-legacy-gesture-to-spell/releases)\
 launch game first, then launch exe and play.\
+If the mod doesn't work, try to launch it with administrator privileges
 Right click system tray icon then press 'Close' to terminate.
 
 
